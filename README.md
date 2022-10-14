@@ -9,3 +9,6 @@
 8 [github获取token](https://blog.csdn.net/QilanAllen/article/details/111141263)  
 9 [GitHub Actions × Unity3D 持续交付实践](https://github.red/github-actions-x-unity3d/)  
 
+upload  
+1.https://dev.to/eugenebabichenko/automated-multi-platform-releases-with-github-actions-1abg  
+2.https://ithelp.ithome.com.tw/articles/10250002  
