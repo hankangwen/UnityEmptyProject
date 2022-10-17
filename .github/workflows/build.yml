@@ -1,6 +1,13 @@
 name: Build project
 
-on: [push, pull_request]
+on:
+  push:
+   branches: [ release ]
+  pull_request:
+    branches: [ release ]
+  #schedule:
+   # - cron: "0 2 * * *"
+  #[push, pull_request]
 
 jobs:
   buildForAllSupportedPlatforms:
