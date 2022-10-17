@@ -3,11 +3,17 @@ name: Build-Android
 # on: [push, pull_request]
 on:
   push:
-    branches: [  main  ]
-    tags:
-      - 'v*'
+   branches: [ release ]
   pull_request:
-    branches: [  main  ]
+    branches: [ release ]
+    
+  #push:
+  #  branches: [  main  ]
+  #  tags:
+  #    - 'v*'
+  #pull_request:
+  #  branches: [  main  ]
+    
 jobs:
   build:
     runs-on: ubuntu-latest
