@@ -61,7 +61,7 @@ jobs:
           tag_name: V-${{ steps.date.outputs.date }}
           release_name: V-${{ steps.date.outputs.date }}
           body: |
-            ![release!](https://i.giphy.com/media/lPulaaB9lDMnGZiivs/source.gif)
+            # ![release!](https://i.giphy.com/media/lPulaaB9lDMnGZiivs/source.gif)
             # Changelog
             Release type: V-${{ steps.date.outputs.date }}
           prerelease: false
