@@ -2,9 +2,9 @@ name: Build project
 
 on:
   push:
-   branches: [ release ]
+   branches: [ main ]
   pull_request:
-    branches: [ release ]
+    branches: [ main ]
   #schedule:
    # - cron: "0 2 * * *"
   #[push, pull_request]
@@ -45,7 +45,7 @@ jobs:
           path: build/${{ matrix.targetPlatform }}
 
       - name: Zip Binary
-        run: zip -r Asteroid_${{ matrix.targetPlatform }}.zip build/${{ matrix.targetPlatform }}/*
+        run: zip -r Test_${{ matrix.targetPlatform }}.zip build/${{ matrix.targetPlatform }}/*
 
       - name: Create GitHub release
         id: create_release
@@ -69,6 +69,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{steps.create_release.outputs.upload_url}}
-          asset_path: ./Asteroid_${{ matrix.targetPlatform }}.zip
-          asset_name: Asteroid_${{ matrix.targetPlatform }}.zip
+          asset_path: ./Test_${{ matrix.targetPlatform }}.zip
+          asset_name: Test_${{ matrix.targetPlatform }}.zip
           asset_content_type: application/zip
