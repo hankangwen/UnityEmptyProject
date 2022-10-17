@@ -44,8 +44,8 @@ jobs:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
 
-      #- name: Zip Binary
-       # run: zip -r Test_${{ matrix.targetPlatform }}.zip build/${{ matrix.targetPlatform }}/*
+      - name: Zip Binary
+        run: zip -r ProductName_${{ matrix.targetPlatform }}.zip build/${{ matrix.targetPlatform }}/*
 
       - name: Get release
         id: get_release
@@ -60,9 +60,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: build/${{ matrix.targetPlatform }}/*
-          asset_name: productName_{{ matrix.targetPlatform }}
-          asset_content_type: application/octet-stream
-          #asset_path: ./Test_${{ matrix.targetPlatform }}.zip
-          #asset_name: Test_${{ matrix.targetPlatform }}.zip
-          #asset_content_type: application/zip
+          asset_path: ./ProductName_${{ matrix.targetPlatform }}.zip
+          asset_name: ProductName_${{ matrix.targetPlatform }}.zip
+          asset_content_type: application/zip
