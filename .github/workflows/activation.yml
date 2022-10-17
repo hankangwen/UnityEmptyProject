@@ -1,6 +1,7 @@
 name: Acquire activation file
 on:
   push:
+    branches: [ release ]
   schedule:
     - cron: '0 23 * * *'
     
