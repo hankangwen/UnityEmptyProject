@@ -47,11 +47,28 @@ jobs:
       - name: Zip Binary
         run: zip -r ProductName_${{ matrix.targetPlatform }}.zip build/${{ matrix.targetPlatform }}/*
 
-      - name: Get release
-        id: get_release
-        uses: bruceadams/get-release@v1.2.3
+      
+
+      - name: Create GitHub release
+        id: create_release
+  #       if: steps.version_check.outputs.changed == 'true'
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          tag_name: V-$(date +'%Y-%m-%dT%H:%M')
+          release_name: V-$(date +'%Y-%m-%dT%H:%M')
+          body: |
+            ![release!](https://i.giphy.com/media/lPulaaB9lDMnGZiivs/source.gif)
+            # Changelog
+            Release type: V-$(date +'%Y-%m-%dT%H:%M')
+          prerelease: false
+        
+      #- name: Get release
+       # id: get_release
+        # uses: bruceadams/get-release@v1.2.3
+       # env:
+        # GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Upload Release Asset
         id: upload-release-asset 
@@ -59,7 +76,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          upload_url: ${{ steps.get_release.outputs.upload_url }}
+          #upload_url: ${{ steps.get_release.outputs.upload_url }}
+          upload_url: ${{steps.create_release.outputs.upload_url}}
           asset_path: ./ProductName_${{ matrix.targetPlatform }}.zip
           asset_name: ProductName_${{ matrix.targetPlatform }}.zip
           asset_content_type: application/zip
