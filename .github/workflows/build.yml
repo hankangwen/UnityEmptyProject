@@ -60,7 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: build/${{ matrix.targetPlatform }}
+          asset_path: build/${{ matrix.targetPlatform }}/*
           asset_name: productName_{{ matrix.targetPlatform }}
           asset_content_type: application/octet-stream
           #asset_path: ./Test_${{ matrix.targetPlatform }}.zip
