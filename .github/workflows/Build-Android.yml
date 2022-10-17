@@ -70,7 +70,7 @@ jobs:
 #       if: steps.version_check.outputs.changed == 'true'
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         tag_name: V-${{ steps.buildnumber.outputs.build_number }}
         release_name: V-${{ steps.buildnumber.outputs.build_number }}
@@ -85,7 +85,7 @@ jobs:
       if: steps.create_release.outputs.upload_url && steps.prepare_release.outputs.apk_path && steps.prepare_release.outputs.apk_name
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
       with:
         upload_url: ${{steps.create_release.outputs.upload_url}}
         asset_path: ${{steps.prepare_release.outputs.apk_path}}
@@ -96,7 +96,7 @@ jobs:
       if: steps.create_release.outputs.upload_url && steps.prepare_release.outputs.bundle_path && steps.prepare_release.outputs.bundle_name
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
       with:
         upload_url: ${{steps.create_release.outputs.upload_url}}
         asset_path: ${{steps.prepare_release.outputs.bundle_path}}
