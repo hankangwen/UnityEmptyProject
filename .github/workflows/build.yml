@@ -46,9 +46,7 @@ jobs:
 
       - name: Get current date
         id: date
-        run: |
-          echo "::set-output name=day::$(date +'%Y-%m-%d')"
-          echo "::set-output name=date::$(date +'%Y-%m-%d-%H+8-%M')"
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H+8-%M')"
           
       - name: Zip Binary
         run: zip -r ProductName_${{ matrix.targetPlatform }}_${{ steps.date.outputs.date }}.zip build/${{ matrix.targetPlatform }}/*
@@ -60,7 +58,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          tag_name: V-${{ steps.date.outputs.day }}
+          tag_name: V-${{ steps.date.outputs.date }}
           release_name: V-${{ steps.date.outputs.date }}
           body: |
             # Changelog
